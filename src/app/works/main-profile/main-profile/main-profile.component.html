@@ -1,0 +1,41 @@
+<div class="profile">
+    <div class="picture mt-5">
+        <img [src]="profile.avatar" class="img-thumbnail rounded-circle">
+    </div>
+
+    <div class="infomation">
+        <b style="font-size: 20px;">{{profile.name}}</b>
+        <p style="font-size: 15px;">{{profile.job}}</p>
+    </div>
+
+    <div class="background-follow">
+        <div class="follow">
+            <div class="followers">
+                <p style="color: red;">{{profile.followers}}</p>
+                <p>Followers</p>
+            </div>
+            <div class="red-line mt-2"></div>
+            <div class="following">
+                <p style="color: red;">{{profile.following}}</p>
+                <p>Following</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="background-tasks mt-2">
+        <div *ngFor="let task of tasks" class="box m-4">
+            <p>{{ task.name }}</p>
+            <p>Date : {{ task.date | date: 'short' }}</p>
+          </div>
+    </div>
+
+    <div class="background-remain-tasks">
+        <div class ="remain-task">
+            <p>10 tasks remain</p>
+        </div>
+    </div>
+
+
+</div>
+
+

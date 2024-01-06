@@ -1,0 +1,73 @@
+.profile {
+    background-color: #c02c24;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.picture {
+    width: 150px;
+    height: 150px;
+}
+
+.infomation {
+    text-align: center;
+    margin-top: 10px;
+    color: #ffffff;
+}
+
+.background-follow {
+    background-color: #d1c6c6;
+    border-radius: 20px;
+    height:10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.follow {
+    display: flex;
+    margin-top: 5px;
+}
+
+.followers {
+    margin-right: 50px;
+    margin-left: 50px;
+    font-weight: bold;
+}
+
+.following {
+    margin-right: 50px;
+    margin-left: 50px;
+    font-weight: bold;
+}
+
+.red-line {
+    height: 50px;
+    width: 3px; 
+    background-color: #FF0000; 
+}
+
+.background-tasks {
+    background-color: #ffffff;
+    height: 100%;
+    width: 100%;
+}
+
+.box {
+    background-color: #c02c24;
+    color: #ffffff;
+    display: grid;
+    justify-content: center;
+}
+
+.background-remain-tasks{
+    background-color: #d1c6c6;
+    width: 500px;
+}
+
+
+
+
+
