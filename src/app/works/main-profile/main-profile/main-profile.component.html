@@ -23,13 +23,18 @@
     </div>
 
     <div class="background-tasks mt-2">
-        <div *ngFor="let info of tasks" class="box m-4">
+        <div *ngFor="let info of tasks" class="box m-4" [routerLink]="['/task-profile']">
             <p>{{ info.name }}</p>
             <p>Date : {{ info.date | date: 'short' }}</p>
         </div>
     </div>
 
+    <div class="background-remain">
+        <p>10 Tasks Remain</p>
+    </div>
+
 </div>
+
 
 
 
