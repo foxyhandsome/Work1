@@ -23,19 +23,14 @@
     </div>
 
     <div class="background-tasks mt-2">
-        <div *ngFor="let task of tasks" class="box m-4">
-            <p>{{ task.name }}</p>
-            <p>Date : {{ task.date | date: 'short' }}</p>
-          </div>
-    </div>
-
-    <div class="background-remain-tasks">
-        <div class ="remain-task">
-            <p>10 tasks remain</p>
+        <div *ngFor="let info of tasks" class="box m-4">
+            <p>{{ info.name }}</p>
+            <p>Date : {{ info.date | date: 'short' }}</p>
         </div>
     </div>
 
-
 </div>
+
+
 
 
