@@ -58,13 +58,14 @@
 .box {
     background-color: #c02c24;
     color: #ffffff;
+    padding: 10px;
     display: grid;
-    justify-content: center;
+    justify-items: center;
 }
 
 .background-remain{
     background-color: #d1c6c6;
-    width: 400px;
+    width: 100%;
 }
 
 

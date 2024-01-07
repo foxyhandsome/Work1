@@ -1,0 +1,30 @@
+.background-head{
+    background-color: #c02c24;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.task-detail{
+    background-color: #a0241c;
+    display: flex;
+    height: 50px;
+    color: #ffffff;
+}
+
+.task-info{
+    color: #ffffff;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.back{
+    background-color: #a0241c;
+    color: #ffffff;
+}
+
+.word{
+    margin-left: 33%;
+
+}

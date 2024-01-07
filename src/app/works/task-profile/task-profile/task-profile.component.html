@@ -1,1 +1,14 @@
-<p>task-profile works!</p>
+<div class="background-head">
+    <div class="task-detail">
+        <button class="back" (click)="btnback()"><</button>
+        <b class="word mt-2">Task detail</b>
+    </div>
+    <div class="task-info">
+        <p>{{detail.name}}<p>
+        <p>Date : {{detail.date | date: 'short'}}<p></p>
+    </div>
+</div>
+
+<div class="description m-4">
+    <p class="description-detail">{{detail.description}}</p>
+</div>

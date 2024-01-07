@@ -23,7 +23,7 @@
     </div>
 
     <div class="background-tasks mt-2">
-        <div *ngFor="let info of tasks" class="box m-4" [routerLink]="['/task-profile']">
+        <div *ngFor="let info of tasks" class="box m-4" (click)="viewtask(info.id)">
             <p>{{ info.name }}</p>
             <p>Date : {{ info.date | date: 'short' }}</p>
         </div>
