@@ -1,11 +1,11 @@
 <div class="background-head">
     <div class="task-detail">
-        <button class="back" (click)="btnback()"><</button>
+        <button type="button" class="btn btn-danger" (click)="btnback()"><</button>
         <b class="word mt-2">Task detail</b>
     </div>
     <div class="task-info">
         <p>{{detail.name}}<p>
-        <p>Date : {{detail.date | date: 'short'}}<p></p>
+        <p>Date : {{detail.date | date: 'short'}}</p>
     </div>
 </div>
 

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TaskService } from 'src/app/shared/service/api.task';
 
 @Component({
   selector: 'app-task-profile',
@@ -10,9 +11,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TaskProfileComponent implements OnInit{
   private _activatedRoute = inject(ActivatedRoute);
   private _http = inject(HttpClient);
-  private router = inject(Router);
+  private _router = inject(Router);
+  private _service = inject(TaskService);
 
-  id_task! : number
+  taskid! : number
   detail : any
 
   ngOnInit(): void {
@@ -20,21 +22,21 @@ export class TaskProfileComponent implements OnInit{
     this._activatedRoute.queryParams.subscribe(params => {
       const idtask = params['id_task'];
       if (idtask) {
-        this.id_task = idtask;
-        this.gettaskbyid()
+        this.taskid = idtask;
+        this.getTaskById(Number(this.taskid))
       }
     })
 
   }
 
-  gettaskbyid(): void {
-    this._http.get('http://103.13.31.37:17444/api/tasks/' + this.id_task).subscribe((data: any) => {
+  getTaskById(taskid: Number): void {
+    this._service.getTaskId(taskid).subscribe((data: any) => {
       this.detail = data;
     });
   }
 
   btnback(): void{
-    this.router.navigate(['/main-profile']);
+    this._router.navigate(['/main-profile']);
   }
 
 }

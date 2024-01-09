@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MainProfileComponent } from './works/main-profile/main-profile/main-profile.component';
-import { TaskProfileComponent } from './works/task-profile/task-profile/task-profile.component';
+import { MainProfileComponent } from './components/main-profile/main-profile.component';
+import { TaskProfileComponent } from './components/task-profile/task-profile.component';
 
 const routes: Routes = [
   {
