@@ -22,14 +22,16 @@
         </div>
     </div>
 
+
     <div class="background-tasks mt-2">
-        <button class="create fa-solid fa-plus-minus"  (click)="create()"></button>
+        <button class="create fa-solid fa-plus-minus" (click)="create()"> task </button>
+
         <div *ngFor="let info of tasks" class="box m-4" (click)="viewTask(info.id)">
             <b>{{ info.name }}</b>
             <p>Date : {{ info.date | date: 'short' }}</p>
             <div class="operation">
-                <button class="edit fa-solid fa-pen-to-square" style="background-color: #ffffff;" (click)="edit()"></button>
-                <button class="delete fa-solid fa-trash-can mt-1" style="background-color: red;"></button>
+                <button class="btn-edit fa-solid fa-pen-to-square" style="background-color: #ffffff; padding: 10px 10px;" (click)="edit()"></button>
+                <button class="btn-delete fa-solid fa-trash-can" style="background-color: red; padding: 10px 10px;"></button>
             </div>
         </div>
     </div>

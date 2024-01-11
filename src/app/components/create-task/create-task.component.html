@@ -1,17 +1,19 @@
 <div class="background-head">
-    <div class="task-detail">
-        <button type="button" class="btn btn-danger" (click)="btnback()"><</button>
+  <div class="task-detail">
+    <button type="button" class="btn btn-danger" (click)="btnback()"> < </button>
         <b class="word mt-2">Add Task</b>
-    </div>
+  </div>
 </div>
 
-<div class="m-3">
+<form>
+  <div class="m-3">
     <b class="form-topic">Topic</b>
-    <input type="email" class="form-control">
+    <input type="text" class="form-control" id="information" formControlName="topic" required>
   </div>
   <div class="m-3">
     <b class="form-description">Description</b>
-    <textarea class="form-control" rows="4"></textarea>
-    <button class="submit">Submit</button>
+    <textarea type="text" class="form-control" rows="4" formControlName="description" required></textarea>
+    <button type="submit" class="submit">Submit</button>
   </div>
+</form>
 

@@ -27,4 +27,10 @@
     font-size: 16px;
 }
 
+input:invalid , textarea:invalid {
+    border-color: red; 
+    background-color: pink; 
+}
+
+
 

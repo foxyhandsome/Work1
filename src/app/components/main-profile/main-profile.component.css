@@ -60,7 +60,7 @@
     color: #ffffff;
     padding: 10px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
 .background-remain{
@@ -70,7 +70,7 @@
 
 .create{
     background-color: #d1c6c6;
-    padding: 2px 5px;
+    padding: 6px 5px;
 }
 
 
