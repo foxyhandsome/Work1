@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProfileService } from 'src/app/shared/service/api.profile';
-import { TaskService } from 'src/app/shared/service/api.task';
+import { ProfileService } from 'src/app/shared/service/api.profile.service';
 
 
 
@@ -13,8 +11,7 @@ import { TaskService } from 'src/app/shared/service/api.task';
 })
 
  
-export class MainProfileComponent implements OnInit{
-  private _http = inject(HttpClient);
+export class MainProfileComponent implements OnInit{;
   private router = inject(Router);
   private _service = inject(ProfileService);
 
@@ -47,6 +44,16 @@ export class MainProfileComponent implements OnInit{
       }
     });
   }
+
+  create(): void{
+    this.router.navigate(['/create-task'])
+  }
+
+  edit(): void{
+    this.router.navigate(['/edit-task'])
+  }
+
+  
 
 
 }

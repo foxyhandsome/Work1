@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TaskService } from 'src/app/shared/service/api.task';
+import { TaskService } from 'src/app/shared/service/api.task.service';
 
 @Component({
   selector: 'app-task-profile',
@@ -10,7 +9,6 @@ import { TaskService } from 'src/app/shared/service/api.task';
 })
 export class TaskProfileComponent implements OnInit{
   private _activatedRoute = inject(ActivatedRoute);
-  private _http = inject(HttpClient);
   private _router = inject(Router);
   private _service = inject(TaskService);
 
@@ -23,7 +21,7 @@ export class TaskProfileComponent implements OnInit{
       const idtask = params['id_task'];
       if (idtask) {
         this.taskid = idtask;
-        this.getTaskById(Number(this.taskid))
+        this.getTaskById(this.taskid)
       }
     })
 

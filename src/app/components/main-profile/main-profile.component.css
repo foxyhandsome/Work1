@@ -59,14 +59,23 @@
     background-color: #c02c24;
     color: #ffffff;
     padding: 10px;
-    display: grid;
-    justify-items: center;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .background-remain{
     background-color: #d1c6c6;
     width: 100%;
 }
+
+.create{
+    background-color: #d1c6c6;
+    padding: 2px 5px;
+}
+
+
+
+
 
 
 

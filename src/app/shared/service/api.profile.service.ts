@@ -16,5 +16,4 @@ export class ProfileService {
     const apiUrl = 'http://103.13.31.37:17444/api/tasks';
     return this._httpClient.get(apiUrl);
   }
-
 }

@@ -1,38 +1,23 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'formatNumbers'
+  name: 'formatNumber'
 })
-export class FormatNumbers implements PipeTransform {
+export class FormatNumber implements PipeTransform {
 
-  transform(value: number){
+  transform(count: number){
 
-    if (Math.abs(value) >= 10000000000) {
-      return (value / 1000000000) + 'B';
+    if (count >= 10000000000) {
+      return (count / 1000000000) + 'B';
 
-    } else if (Math.abs(value) >= 1000000000) {
-        return (value / 1000000000) + 'B';
+    }else if (count >= 1000000) {
+      return (count / 1000000) + 'M';
 
-    } else if (Math.abs(value) >= 100000000) {
-      return (value / 10000000) + 'M';
-
-    } else if (Math.abs(value) >= 10000000) {
-        return (value / 1000000) + 'M';
-
-    } else if (Math.abs(value) >= 1000000) {
-        return (value / 1000000) + 'M';
-
-    } else if (Math.abs(value) >= 1000000) {
-        return (value / 1000) + 'K';
-
-    } else if (Math.abs(value) >= 10000) {
-        return (value / 1000) + 'K';
-
-    } else if (Math.abs(value) >= 1000) {
-      return (value / 1000) + 'K';
+    }else if (count >= 1000) {
+      return (count / 1000) + 'K';
       
-    } else {
-      return value.toString();
+    }else {
+      return
     }
   }
 }
