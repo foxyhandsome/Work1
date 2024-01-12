@@ -11,6 +11,7 @@ import { LoadingInterceptor } from './shared/interceptor/loading-interceptor';
 import { LoadingComponent } from './shared/interceptor/loading/loading/loading.component';
 import { CreateTaskComponent } from './components/create-task/create-task.component';
 import { EditTaskComponent } from './components/edit-task/edit-task.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EditTaskComponent } from './components/edit-task/edit-task.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     {

@@ -1,4 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,14 +8,37 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-task.component.css']
 })
 export class CreateTaskComponent implements OnInit {
+
+  taskForm: FormGroup;
+
   private _router = inject(Router);
-
-
-  ngOnInit(): void {
-    
+  constructor(private fb: FormBuilder) {
+    this.taskForm = this.fb.group({
+      topic: '',
+      description: ''
+    });
+    this.taskForm.valueChanges.subscribe(console.log);
   }
 
 
+
+
+  ngOnInit(): void {
+
+  }
+
+  taskArray:any[]=[]
+
+
+  createTask(){
+    const localData = localStorage.getItem('tasklist')
+    if(this.taskForm.valid){
+      localStorage.setItem("tasklist",JSON.stringify(this.taskForm.value));
+      this._router.navigate(['/profile'])
+      alert("Task created successfully.")
+    }
+
+  }
 
   btnback(): void{
     this._router.navigate(['/main-profile']);

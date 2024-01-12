@@ -17,12 +17,14 @@ export class MainProfileComponent implements OnInit{;
 
   
   profile : any;
-  tasks : any;
+  // tasks : any;
+  tasks: any = { topic: '', description: '' };
 
   ngOnInit(): void {
     
     this.getProfile()
-    this.getTasks()
+    // this.getTasks()
+    this.getTask()
   }
 
   getProfile() {
@@ -31,26 +33,45 @@ export class MainProfileComponent implements OnInit{;
     });
   }
   
-  getTasks() {
-    this._service.getTaskBox().subscribe((data: any) => {
-      this.tasks = data;
-    });
+  // getTasks() {
+  //   this._service.getTaskBox().subscribe((data: any) => {
+  //     this.tasks = data;
+  //   });
+  // }
+
+  getTask() {
+    const task = localStorage.getItem("tasklist");
+
+    if (task !== null) {
+      this.tasks = JSON.parse(task);
+      console.log(this.tasks)
+    } else {
+      console.log("ไม่พบข้อมูล")
+    }
   }
 
-  viewTask(idtask: number) {
-    this.router.navigate(['/task-profile'], {
-      queryParams: {
-        id_task: idtask
-      }
-    });
-  }
+  // viewTask(idtask: number) {
+  //   this.router.navigate(['/task-profile'], {
+  //     queryParams: {
+  //       id_task: idtask
+  //     }
+  //   });
+  // }
 
-  create(): void{
+  createTask(): void{
     this.router.navigate(['/create-task'])
   }
 
-  edit(): void{
+  editTask(): void{
     this.router.navigate(['/edit-task'])
+  }
+
+  deleteTask(){
+    const confirm = window.confirm('ต้องการลบใช่หรือไม่');
+    if(confirm){
+      localStorage.removeItem("tasklist");
+    }
+
   }
 
   

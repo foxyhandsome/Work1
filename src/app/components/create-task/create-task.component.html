@@ -5,7 +5,7 @@
   </div>
 </div>
 
-<form>
+<form [formGroup]="taskForm">
   <div class="m-3">
     <b class="form-topic">Topic</b>
     <input type="text" class="form-control" id="information" formControlName="topic" required>
@@ -13,7 +13,7 @@
   <div class="m-3">
     <b class="form-description">Description</b>
     <textarea type="text" class="form-control" rows="4" formControlName="description" required></textarea>
-    <button type="submit" class="submit">Submit</button>
+    <button type="submit" class="submit" (click)="createTask()">Submit</button>
   </div>
 </form>
 
