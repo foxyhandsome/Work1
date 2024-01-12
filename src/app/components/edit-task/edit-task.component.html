@@ -1,1 +1,18 @@
-<p>edit-task works!</p>
+<div class="background-head">
+    <div class="task-detail">
+      <button type="button" class="btn btn-danger" (click)="btnback()"> < </button>
+          <b class="word mt-2">Edit Task</b>
+    </div>
+  </div>
+
+  <form [formGroup]="taskForm">
+    <div class="m-3">
+      <b class="form-topic">Topic</b>
+      <input type="text" class="form-control" id="information" formControlName="topic" required>
+    </div>
+    <div class="m-3">
+      <b class="form-description">Description</b>
+      <textarea type="text" class="form-control" rows="4" formControlName="description" required></textarea>
+      <button type="submit" class="submit" (click)="editTask()">Submit</button>
+    </div>
+  </form>

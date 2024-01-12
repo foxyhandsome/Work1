@@ -11,6 +11,7 @@ export class CreateTaskComponent implements OnInit {
 
   taskForm: FormGroup;
 
+
   private _router = inject(Router);
   constructor(private fb: FormBuilder) {
     this.taskForm = this.fb.group({
@@ -31,10 +32,9 @@ export class CreateTaskComponent implements OnInit {
 
 
   createTask(){
-    const localData = localStorage.getItem('tasklist')
     if(this.taskForm.valid){
       localStorage.setItem("tasklist",JSON.stringify(this.taskForm.value));
-      this._router.navigate(['/profile'])
+      this._router.navigate(['/main-profile'])
       alert("Task created successfully.")
     }
 
