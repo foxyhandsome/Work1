@@ -26,22 +26,23 @@
     <div class="background-tasks mt-2">
         <button class="create fa-solid fa-plus-minus" (click)="createTask()"> task </button>
 
-        <div  class="box m-4" >
-            <b>{{ tasks.topic }}</b>
-            <b>{{ tasks.description }}</b>
+        <div *ngFor="let info of tasks" class="box m-4" (click)="viewTask(info.id)">
+        <div class="box m-4" >
+            <b class="topic">{{ info.topic }}</b>
+            <b class="description">{{ info.date | date: 'short' }}</b>
             <!-- <p>Date : {{ info.date | date: 'short' }}</p> -->
             <div class="operation">
-                <button class="btn-edit fa-solid fa-pen-to-square" style="background-color: #ffffff; padding: 10px 10px;" (click)="editTask()"></button>
-                <button class="btn-delete fa-solid fa-trash-can" style="background-color: red; padding: 10px 10px;" (click)="deleteTask()"></button>
+                <button class="btn-edit fa-solid fa-pen-to-square" style="background-color: #ffffff; padding: 10px 19px;" (click)="editTask(info.id)"></button>
+                <button class="btn-delete fa-solid fa-trash-can" style="background-color: red; padding: 10px 20px;" (click)="deleteTask(info.id)"></button>
             </div>
         </div>
     </div>
 
-    <div class="background-remain">
-        <p>10 Tasks Remain</p>
-    </div>
-
 </div>
+<div class="background-remain">
+    <p>10 Tasks Remain</p>
+</div>
+
 
 
 

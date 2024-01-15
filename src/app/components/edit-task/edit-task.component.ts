@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -11,9 +11,11 @@ import { Router } from '@angular/router';
 export class EditTaskComponent implements OnInit{
 
   taskForm: FormGroup;
+  tasksLocal: any[] = [];
   taskinfo: any = { topic: '', description: '' };
+  id!: number;
 
-
+  private _activatedRoute = inject(ActivatedRoute);
   private _router = inject(Router);
   constructor(private fb: FormBuilder) {
     this.taskForm = this.fb.group({
@@ -23,32 +25,77 @@ export class EditTaskComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getTaskInfo()
+
+    this._activatedRoute.queryParams.subscribe(params => {
+      this.id = +params['id']; // ใส่เครื่องหมาย + เพื่อแปลงเป็น number
+      console.log("Received ID:", this.id, typeof this.id);
+      this.getTaskInfo(this.id)
+    });
   }
 
-  getTaskInfo() {
-    const task = localStorage.getItem("tasklist");
+  getTaskInfo(id: number): void {
+    console.log('Calling getTaskById with ID:', id);
+    const storedData = localStorage.getItem('tasklist');
 
-    if (task !== null) {
-      this.taskinfo = JSON.parse(task);
-      if (this.taskForm) {
-        this.taskForm.patchValue(this.taskinfo);
+    if (storedData) {
+      const tasks: any[] = JSON.parse(storedData);
+
+      const foundTask = tasks.find(task => task.id === id);
+
+      if (foundTask) {
+        console.log('Found Task:', foundTask);
+        this.taskForm.patchValue({
+          topic: foundTask.topic,
+          description: foundTask.description
+        });
+
+        this.tasksLocal = [foundTask];
       } else {
-        console.error('Form is not initialized!');
+        console.error('Task with specified ID not found');
       }
     } else {
-      console.log("ไม่พบข้อมูล");
+      console.error('No data found in localStorage');
     }
   }
 
   editTask(){
-    if(this.taskForm.valid){
-      localStorage.setItem("tasklist",JSON.stringify(this.taskForm.value));
-      this._router.navigate(['/main-profile'])
-      alert("Successfully edited")
-    }
+    if (this.taskForm && this.taskForm.valid) {
+      // ดึงข้อมูลทั้งหมดจาก Local Storage
+      const storageData = localStorage.getItem('tasklist');
 
+      if (storageData) {
+        const tasks: any[] = JSON.parse(storageData);
+
+        // ค้นหา index ของ task ที่ตรงกับ ID ที่ต้องการแก้ไข
+        const taskIndex = tasks.findIndex(task => task.id === this.id);
+
+        if (taskIndex !== -1) {
+          // แก้ไขข้อมูล topic และ description ใน tasks ด้วยค่าจาก validateForm
+          tasks[taskIndex].topic = this.taskForm.value.topic;
+          tasks[taskIndex].description = this.taskForm.value.description;
+
+          // กำหนดเวลาที่แก้ไขใน properties date
+          tasks[taskIndex].date = new Date().toISOString();
+
+          // บันทึกข้อมูลทั้งหมดลงใน Local Storage
+          localStorage.setItem('tasklist', JSON.stringify(tasks));
+
+          // clear tasksLocal
+          this.tasksLocal = [];
+          this._router.navigate(['/main-profile'])
+          alert('แก้ไข Task เสร็จสิ้น');
+        } else {
+          console.error('ไม่พบ Task ที่ตรงกับ ID ที่ต้องการแก้ไข');
+        }
+      } else {
+        console.error('ไม่พบข้อมูลทั้งหมด');
+      }
+    } else {
+      console.error('กรุณากรอกข้อมูลให้ครบถ้วน');
+    }
   }
+
+  
 
   btnback(): void{
     this._router.navigate(['/main-profile']);

@@ -50,28 +50,50 @@ export class MainProfileComponent implements OnInit{;
     }
   }
 
-  // viewTask(idtask: number) {
-  //   this.router.navigate(['/task-profile'], {
-  //     queryParams: {
-  //       id_task: idtask
-  //     }
-  //   });
-  // }
+  viewTask(idtask: number) {
+    this.router.navigate(['/task-profile'], {
+      queryParams: {
+        id_task: idtask
+      }
+    });
+  }
 
   createTask(): void{
     this.router.navigate(['/create-task'])
   }
 
-  editTask(): void{
-    this.router.navigate(['/edit-task'])
+  editTask(idtask: number): void {
+    this.router.navigate(['/edit-task'], {
+      queryParams: {
+        id: idtask
+      }
+    });
   }
 
-  deleteTask(){
-    const confirm = window.confirm('ต้องการลบใช่หรือไม่');
-    if(confirm){
-      localStorage.removeItem("tasklist");
-    }
 
+
+  deleteTask(idtask: number): void {
+    const confirmDelete = window.confirm('ต้องการลบใช่หรือไม่');
+  
+    if (confirmDelete) {
+      const storedTasks = localStorage.getItem('tasklist');
+  
+      if (storedTasks) {
+        const tasks: any[] = JSON.parse(storedTasks);
+  
+        const taskIndex = tasks.findIndex(task => task.id === idtask);
+  
+        if (taskIndex !== -1) {
+          tasks.splice(taskIndex, 1);
+          localStorage.setItem('tasklist', JSON.stringify(tasks));
+          alert('ลบ Task เสร็จสิ้น');
+        } else {
+          console.error('ไม่พบ Task ที่ตรงกับ ID ที่ต้องการลบ');
+        }
+      } else {
+        console.error('ไม่พบข้อมูลทั้งหมด');
+      }
+    } 
   }
 
   
