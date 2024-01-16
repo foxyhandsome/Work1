@@ -83,7 +83,7 @@ export class EditTaskComponent implements OnInit{
           // clear tasksLocal
           this.tasksLocal = [];
           this._router.navigate(['/main-profile'])
-          alert('แก้ไข Task เสร็จสิ้น');
+          alert('Edit Task complete!');
         } else {
           console.error('ไม่พบ Task ที่ตรงกับ ID ที่ต้องการแก้ไข');
         }
@@ -91,7 +91,7 @@ export class EditTaskComponent implements OnInit{
         console.error('ไม่พบข้อมูลทั้งหมด');
       }
     } else {
-      console.error('กรุณากรอกข้อมูลให้ครบถ้วน');
+      alert('Please fill in complete information.');
     }
   }
 

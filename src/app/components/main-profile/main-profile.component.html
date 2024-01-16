@@ -33,7 +33,7 @@
             <!-- <p>Date : {{ info.date | date: 'short' }}</p> -->
             <div class="operation">
                 <button class="btn-edit fa-solid fa-pen-to-square" style="background-color: #ffffff; padding: 10px 19px;" (click)="editTask(info.id)"></button>
-                <button class="btn-delete fa-solid fa-trash-can" style="background-color: red; padding: 10px 20px;" (click)="deleteTask(info.id)"></button>
+                <button class="btn-delete fa-solid fa-trash-can" style="background-color: red; padding: 10px 20px;" (click)="deleteTask(info.id);$event.stopPropagation()"></button>
             </div>
         </div>
     </div>

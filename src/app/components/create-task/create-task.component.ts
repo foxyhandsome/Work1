@@ -50,7 +50,7 @@ export class CreateTaskComponent implements OnInit {
       this._router.navigate(['/main-profile']);
       alert("Create Task complete!");
     } else {
-      alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+      alert("Please fill in complete information.");
     }
   }
 

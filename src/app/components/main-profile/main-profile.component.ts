@@ -73,7 +73,7 @@ export class MainProfileComponent implements OnInit{;
 
 
   deleteTask(idtask: number): void {
-    const confirmDelete = window.confirm('ต้องการลบใช่หรือไม่');
+    const confirmDelete = window.confirm('Are you sure you want to delete this task');
   
     if (confirmDelete) {
       const storedTasks = localStorage.getItem('tasklist');
@@ -86,7 +86,8 @@ export class MainProfileComponent implements OnInit{;
         if (taskIndex !== -1) {
           tasks.splice(taskIndex, 1);
           localStorage.setItem('tasklist', JSON.stringify(tasks));
-          alert('ลบ Task เสร็จสิ้น');
+          alert('Delete Task complete!');
+          this.getTask()
         } else {
           console.error('ไม่พบ Task ที่ตรงกับ ID ที่ต้องการลบ');
         }
