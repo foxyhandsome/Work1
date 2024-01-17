@@ -38,7 +38,6 @@ export class EditTaskComponent implements OnInit{
 
     if (storedData) {
       const tasks: any[] = JSON.parse(storedData);
-
       const foundTask = tasks.find(task => task.id === id);
 
       if (foundTask) {
@@ -61,7 +60,6 @@ export class EditTaskComponent implements OnInit{
 
       if (storageData) {
         const tasks: any[] = JSON.parse(storageData);
-
         const taskIndex = tasks.findIndex(tasklist => tasklist.id === this.id);
 
         if (taskIndex !== -1) {

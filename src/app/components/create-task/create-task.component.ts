@@ -18,7 +18,6 @@ export class CreateTaskComponent implements OnInit {
       topic: '',
       description: ''
     });
-    // this.taskForm.valueChanges.subscribe(console.log);
   }
 
 
