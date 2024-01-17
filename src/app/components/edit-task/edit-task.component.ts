@@ -11,7 +11,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EditTaskComponent implements OnInit{
 
   taskForm: FormGroup;
-  tasksLocal: any[] = [];
   taskinfo: any = { topic: '', description: '' };
   id!: number;
 
@@ -27,7 +26,7 @@ export class EditTaskComponent implements OnInit{
   ngOnInit(): void {
 
     this._activatedRoute.queryParams.subscribe(params => {
-      this.id = +params['id']; // ใส่เครื่องหมาย + เพื่อแปลงเป็น number
+      this.id = +params['id']; 
       console.log("Received ID:", this.id, typeof this.id);
       this.getTaskInfo(this.id)
     });
@@ -48,8 +47,6 @@ export class EditTaskComponent implements OnInit{
           topic: foundTask.topic,
           description: foundTask.description
         });
-
-        this.tasksLocal = [foundTask];
       } else {
         console.error('Task with specified ID not found');
       }
@@ -60,35 +57,26 @@ export class EditTaskComponent implements OnInit{
 
   editTask(){
     if (this.taskForm && this.taskForm.valid) {
-      // ดึงข้อมูลทั้งหมดจาก Local Storage
       const storageData = localStorage.getItem('tasklist');
 
       if (storageData) {
         const tasks: any[] = JSON.parse(storageData);
 
-        // ค้นหา index ของ task ที่ตรงกับ ID ที่ต้องการแก้ไข
-        const taskIndex = tasks.findIndex(task => task.id === this.id);
+        const taskIndex = tasks.findIndex(tasklist => tasklist.id === this.id);
 
         if (taskIndex !== -1) {
-          // แก้ไขข้อมูล topic และ description ใน tasks ด้วยค่าจาก validateForm
           tasks[taskIndex].topic = this.taskForm.value.topic;
           tasks[taskIndex].description = this.taskForm.value.description;
-
-          // กำหนดเวลาที่แก้ไขใน properties date
           tasks[taskIndex].date = new Date().toISOString();
 
-          // บันทึกข้อมูลทั้งหมดลงใน Local Storage
           localStorage.setItem('tasklist', JSON.stringify(tasks));
-
-          // clear tasksLocal
-          this.tasksLocal = [];
           this._router.navigate(['/main-profile'])
           alert('Edit Task complete!');
         } else {
-          console.error('ไม่พบ Task ที่ตรงกับ ID ที่ต้องการแก้ไข');
+          console.error('Cannot find match id');
         }
       } else {
-        console.error('ไม่พบข้อมูลทั้งหมด');
+        console.error('Cannot find info');
       }
     } else {
       alert('Please fill in complete information.');

@@ -46,7 +46,7 @@ export class MainProfileComponent implements OnInit{;
       this.tasks = JSON.parse(task);
       console.log(this.tasks)
     } else {
-      console.log("ไม่พบข้อมูล")
+      console.log("Cannot find info")
     }
   }
 
@@ -81,23 +81,17 @@ export class MainProfileComponent implements OnInit{;
       if (storedTasks) {
         const tasks: any[] = JSON.parse(storedTasks);
   
-        const taskIndex = tasks.findIndex(task => task.id === idtask);
-  
-        if (taskIndex !== -1) {
-          tasks.splice(taskIndex, 1);
-          localStorage.setItem('tasklist', JSON.stringify(tasks));
-          alert('Delete Task complete!');
-          this.getTask()
-        } else {
-          console.error('ไม่พบ Task ที่ตรงกับ ID ที่ต้องการลบ');
-        }
+        const taskIndex = tasks.findIndex(tasklist => tasklist.id === idtask);
+        tasks.splice(taskIndex);
+        localStorage.setItem('tasklist', JSON.stringify(tasks));
+        alert('Delete Task complete!');
+        this.getTask()
       } else {
-        console.error('ไม่พบข้อมูลทั้งหมด');
+        console.error('Cannot find info');
       }
     } 
   }
 
-  
-
-
 }
+
+
